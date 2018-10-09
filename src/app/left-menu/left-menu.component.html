@@ -1,0 +1,11 @@
+<nav>
+    <ul class="nav flex-column">
+        <li class="nav-item" *ngFor="let item of menuIconList"> 
+            <a class="nav-link">
+                <i [class]="item.icon"></i>
+                <br>
+                {{item.type}}
+            </a>
+        </li>
+    </ul>
+</nav>

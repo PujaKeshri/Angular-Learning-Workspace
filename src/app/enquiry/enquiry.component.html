@@ -1,0 +1,56 @@
+<div class="container">
+	<div class="d-flex">
+		<div>
+			Enquiry
+		</div>
+		<div class="ml-auto">
+			<!-- <button><i class="fa fa-filter"></i></button> -->
+			<div class="dropdown">
+				<button data-toggle="dropdown"><i class="fa fa-filter"></i></button>
+				<div class="dropdown-menu">
+					<div class="dropdown-item" *ngFor="let item of FieldList">{{item.field}}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="">
+			<table class="table table-bordered">
+					<tr class="table-dark">
+						<th sortByField="name" (sorter)="sort($event)">Name</th>
+						<th sortByField="email" (sorter)="sort($event)">Email</th>
+						<th sortByField="contact" (sorter)="sort($event)">Contact</th>
+						<th sortByField="comments" (sorter)="sort($event)">Comments</th>
+						<th sortByField="status" (sorter)="sort($event)">Status</th>
+					</tr>
+					<tr *ngFor = "let detail of personalDetails">
+						<td>{{detail.name}}</td>
+						<td>{{detail.email}}</td>
+						<td>{{detail.contact}}</td>
+						<td>{{detail.comments}}</td>
+						<td>{{detail.status}}</td>
+					</tr>
+				</table>
+	</div>
+	<nav>
+		<ul class="pagination">
+			<li class="page-item">
+				<button (click)=onPreviousClick>PREV</button> 
+			</li>
+			<li class="page-item">
+					<button (click)=onFirstClick>1</button>
+			</li>
+			<li class="page-item">
+					<button (click)=onSecondClick>2</button>
+			</li>
+			<li class="page-item">
+					<button (click)=onThirdClick>3</button>
+			</li>
+			<li class="page-item">
+					<button (click)=onFourthClick>4</button>
+			</li>
+			<li class="page-item">
+					<button (click)=onNextClick>NEXT</button>
+			</li>
+		</ul>
+	</nav>
+</div>
