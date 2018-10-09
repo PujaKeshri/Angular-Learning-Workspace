@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {PersonalDetails} from '../services/personal-details.service';
 import { Sorting } from '../services/sorting.service';
+import {HttpClient} from '@angular/common/http';
+import {iPersonalDetails} from '../interfaces/personal-details-interface';
 
 @Component({
   selector: 'enquiry',
@@ -9,16 +11,18 @@ import { Sorting } from '../services/sorting.service';
 })
 export class Enquiry implements OnInit {
 	
-  personalDetails : {name:string, email:string, contact:string, comments:string, status:string}[] = [];
-  private FieldList : [{field:'name',flag:'false'},{field:'email',flag:'false'},{field:'contact',flag:'false'},{field:'status',flag:'false'}];
-	selectedPage:number = 1;
-  constructor(private personalDetailsServices : PersonalDetails, private sorting : Sorting) { 
+  personalDetails : iPersonalDetails[] = [];
+  private FieldList : [{field:'name',flag:'false'},{field:'email',flag:'false'},{field:'contact',flag:'false'}];
+  selectedPage:number = 1;
+  pagesize : number = 5;
+  constructor(private personalDetailsServices : PersonalDetails, private sorting : Sorting, private http : HttpClient) { 
   
   }
 
   ngOnInit() {
   	console.log("Inside MyFirstComponentComponent onInit");
-  	this.personalDetails = this.personalDetailsServices.getPersonalDetails();
+    this.personalDetails = this.personalDetailsServices.getPersonalDetails();
+    this.getEnquiryDetails(this.selectedPage);
   }
 
   sort(field:string){
@@ -51,28 +55,28 @@ export class Enquiry implements OnInit {
         });
     }
 
-    onPreviousClick(){
-      if(this.selectedPage >= 1)
-          this.selectedPage -= 1;
+    
+    onPageClick(num : any){
+      if(typeof num === "string"){
+          console.log("page Type : string , Page No : " + num);
+          if(num == 'prev'){
+            if(this.selectedPage >= 1)
+                this.selectedPage -= 1;
+          }else if(num == 'next'){
+            this.selectedPage += 1;
+          }
+      }else if(typeof num === "number"){
+        console.log("page Type : number , Page No : " + num);
+        this.selectedPage = num;
+      }
+      this.getEnquiryDetails(this.selectedPage);
     }
 
-    onFirstClick(){
-        this.selectedPage = 1;
-    }
-
-    onSecondClick(){
-      this.selectedPage = 2;
-    }
-
-    onThirdClick(){
-      this.selectedPage = 3;
-    }
-
-    onFourthClick(){
-      this.selectedPage = 4;
-    }
-
-    onNextClick(){
-        this.selectedPage += 1;
+    getEnquiryDetails(pageno : number){
+      this.http.get<iPersonalDetails[]>(`http://localhost:3000/enquires?pageNo=${pageno}&size=${this.pagesize}`).subscribe(data => {
+      this.personalDetails = data;
+    },err => {
+      console.log("Error occured : "+err);
+    });
     }
 }

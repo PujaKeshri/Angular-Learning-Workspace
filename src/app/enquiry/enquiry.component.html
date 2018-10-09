@@ -20,7 +20,7 @@
 						<th sortByField="email" (sorter)="sort($event)">Email</th>
 						<th sortByField="contact" (sorter)="sort($event)">Contact</th>
 						<th sortByField="comments" (sorter)="sort($event)">Comments</th>
-						<th sortByField="status" (sorter)="sort($event)">Status</th>
+						<th>Status</th>
 					</tr>
 					<tr *ngFor = "let detail of personalDetails">
 						<td>{{detail.name}}</td>
@@ -34,22 +34,22 @@
 	<nav>
 		<ul class="pagination">
 			<li class="page-item">
-				<button (click)=onPreviousClick>PREV</button> 
+				<button (click)="onPageClick('prev')">PREV</button> 
 			</li>
 			<li class="page-item">
-					<button (click)=onFirstClick>1</button>
+					<button (click)="onPageClick(1)">1</button>
 			</li>
 			<li class="page-item">
-					<button (click)=onSecondClick>2</button>
+					<button (click)="onPageClick(2)">2</button>
 			</li>
 			<li class="page-item">
-					<button (click)=onThirdClick>3</button>
+					<button (click)="onPageClick(3)">3</button>
 			</li>
 			<li class="page-item">
-					<button (click)=onFourthClick>4</button>
+					<button (click)="onPageClick(4)">4</button>
 			</li>
 			<li class="page-item">
-					<button (click)=onNextClick>NEXT</button>
+					<button (click)="onPageClick('next')">NEXT</button>
 			</li>
 		</ul>
 	</nav>
