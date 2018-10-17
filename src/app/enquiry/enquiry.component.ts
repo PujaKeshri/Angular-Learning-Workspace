@@ -9,7 +9,7 @@ import {iPersonalDetails} from '../interfaces/personal-details-interface';
   templateUrl: './enquiry.component.html',
   styleUrls: ['./enquiry.component.css']
 })
-export class Enquiry implements OnInit {
+export class EnquiryComponent implements OnInit {
 	
   personalDetails : iPersonalDetails[] = [];
   private FieldList : [{field:'name',flag:'false'},{field:'email',flag:'false'},{field:'contact',flag:'false'}];

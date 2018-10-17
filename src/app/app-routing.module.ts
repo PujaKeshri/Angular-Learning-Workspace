@@ -1,9 +1,11 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {Enquiry} from './enquiry/enquiry.component';
+import {EnquiryComponent} from './enquiry/enquiry.component';
+import { LoginComponent } from './login/login.component';
 //import {AppComponent} from './app.component';
 const route : Routes =[
-    { path:'enquiry',	component:Enquiry}
+	{ path:'enquiry',	component:EnquiryComponent},
+	{ path:'login',	component:LoginComponent}
 ];
 
 @NgModule({

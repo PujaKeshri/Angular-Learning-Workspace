@@ -1,56 +1,69 @@
-<div class="container">
-	<div class="d-flex">
-		<div>
-			Enquiry
+<div class="container"> 
+	<div class="row">
+		<div class="col-md-2">
+			<left-menu></left-menu>
 		</div>
-		<div class="ml-auto">
-			<!-- <button><i class="fa fa-filter"></i></button> -->
-			<div class="dropdown">
-				<button data-toggle="dropdown"><i class="fa fa-filter"></i></button>
-				<div class="dropdown-menu">
-					<div class="dropdown-item" *ngFor="let item of FieldList">{{item.field}}</div>
+		<div class="col-md-8">
+			<div class="container">
+				<div class="d-flex">
+					<div>
+						Enquiry
+					</div>
+					<div class="ml-auto">
+						<!-- <button><i class="fa fa-filter"></i></button> -->
+						<div class="dropdown">
+							<button data-toggle="dropdown"><i class="fa fa-filter"></i></button>
+							<div class="dropdown-menu">
+								<div class="dropdown-item" *ngFor="let item of FieldList">{{item.field}}</div>
+							</div>
+						</div>
+					</div>
 				</div>
+				<div class="">
+						<table class="table table-bordered">
+								<tr class="table-dark">
+									<th sortByField="name" (sorter)="sort($event)">Name</th>
+									<th sortByField="email" (sorter)="sort($event)">Email</th>
+									<th sortByField="contact" (sorter)="sort($event)">Contact</th>
+									<th sortByField="comments" (sorter)="sort($event)">Comments</th>
+									<th>Status</th>
+								</tr>
+								<tr *ngFor = "let detail of personalDetails">
+									<td>{{detail.name}}</td>
+									<td>{{detail.email}}</td>
+									<td>{{detail.contact}}</td>
+									<td>{{detail.comments}}</td>
+									<td>{{detail.status}}</td>
+								</tr>
+							</table>
+				</div>
+				<nav>
+					<ul class="pagination">
+						<li class="page-item">
+							<button (click)="onPageClick('prev')">PREV</button> 
+						</li>
+						<li class="page-item">
+								<button (click)="onPageClick(1)">1</button>
+						</li>
+						<li class="page-item">
+								<button (click)="onPageClick(2)">2</button>
+						</li>
+						<li class="page-item">
+								<button (click)="onPageClick(3)">3</button>
+						</li>
+						<li class="page-item">
+								<button (click)="onPageClick(4)">4</button>
+						</li>
+						<li class="page-item">
+								<button (click)="onPageClick('next')">NEXT</button>
+						</li>
+					</ul>
+				</nav>
 			</div>
+			
 		</div>
 	</div>
-	<div class="">
-			<table class="table table-bordered">
-					<tr class="table-dark">
-						<th sortByField="name" (sorter)="sort($event)">Name</th>
-						<th sortByField="email" (sorter)="sort($event)">Email</th>
-						<th sortByField="contact" (sorter)="sort($event)">Contact</th>
-						<th sortByField="comments" (sorter)="sort($event)">Comments</th>
-						<th>Status</th>
-					</tr>
-					<tr *ngFor = "let detail of personalDetails">
-						<td>{{detail.name}}</td>
-						<td>{{detail.email}}</td>
-						<td>{{detail.contact}}</td>
-						<td>{{detail.comments}}</td>
-						<td>{{detail.status}}</td>
-					</tr>
-				</table>
-	</div>
-	<nav>
-		<ul class="pagination">
-			<li class="page-item">
-				<button (click)="onPageClick('prev')">PREV</button> 
-			</li>
-			<li class="page-item">
-					<button (click)="onPageClick(1)">1</button>
-			</li>
-			<li class="page-item">
-					<button (click)="onPageClick(2)">2</button>
-			</li>
-			<li class="page-item">
-					<button (click)="onPageClick(3)">3</button>
-			</li>
-			<li class="page-item">
-					<button (click)="onPageClick(4)">4</button>
-			</li>
-			<li class="page-item">
-					<button (click)="onPageClick('next')">NEXT</button>
-			</li>
-		</ul>
-	</nav>
-</div>
+  </div>
+
+
+
