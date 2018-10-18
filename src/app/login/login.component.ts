@@ -24,19 +24,25 @@ export class LoginComponent implements OnInit{
       //  console.log(event);
       //  console.log(this.profilepicForm.value);
         const file :File = event.target.files[0];
+        console.log(file);
         const reader = new FileReader();
         reader.onload = this.handleReaderLoad.bind(this);
         reader.onerror = this.handleReaderError.bind(this);
         reader.readAsDataURL(file);
        // console.log("Url : "+URL.createObjectURL(file));
         //  console.log("File : "+URL.revokeObjectURL(URL.createObjectURL(file)));
+        // this.http.post('http://localhost:3000/fileUpload',file).subscribe(result=>{
+        //     console.log(result);
+        // },err=>{
+        //     console.log(err);
+        // })
     }
 
     handleReaderLoad(e){
         console.log("In side handleReaderLoad");
-        console.log(e.target.result);
-        console.log(btoa(e.target.result));
-        console.log(atob(btoa(e.target.result)));
+        console.log(e.target);
+      //  console.log(btoa(e.target.result));
+     //   console.log(atob(btoa(e.target.result)));
         this.imageSrc = e.target.result;
     }
 
@@ -51,12 +57,6 @@ export class LoginComponent implements OnInit{
        let url = 'http://localhost:3000/checkUser?user='+user+'&pws='+pws;
        this.http.get<string>(url).subscribe(result=>{
             console.log(result);
-            var resp = JSON.parse(result);
-             if(resp.flag){
-                 console.log(resp.flag);
-             }else{
-                console.log(resp.flag);
-             }
        },err=>{
             console.log(err);
        })
