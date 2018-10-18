@@ -1,11 +1,17 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
     selector:'login',
     templateUrl:'./login.component.html',
     styleUrls:['./login.component.css']
 })
 export class LoginComponent implements OnInit{
+
+    constructor(private http : HttpClient){
+
+    }
+
     @ViewChild('profilepicform') profilepicForm : NgForm;
     @ViewChild('loginform') loginForm : NgForm;
     defaultImg : string = "../assets/images/male.png";
@@ -40,8 +46,33 @@ export class LoginComponent implements OnInit{
     }
 
     onSubmitClick(){
+       let user = this.loginForm.value.username;
+       let pws = this.loginForm.value.password;
+       let url = 'http://localhost:3000/checkUser?user='+user+'&pws='+pws;
+       this.http.get<string>(url).subscribe(result=>{
+            console.log(result);
+            var resp = JSON.parse(result);
+             if(resp.flag){
+                 console.log(resp.flag);
+             }else{
+                console.log(resp.flag);
+             }
+       },err=>{
+            console.log(err);
+       })
+    }
+
+    onRegistration(){
         console.log(this.loginForm);
-        console.log(this.loginForm.value);
+        var data = this.loginForm.value;
+        const httpOptions = {
+            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+          };
+        this.http.post('http://localhost:3000/saveUser',data,httpOptions).subscribe(result => {
+            console.log(result);
+        },err => {
+            console.log(err);
+        });
     }
 
 }
