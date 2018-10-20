@@ -31,14 +31,14 @@
                             required
                             ngModel
                         #password="ngModel">
-                        <span *ngIf="password.dirty && password.invalid" class="invalidInput">UserName is required</span>
+                        <span *ngIf="password.dirty && password.invalid" class="invalidInput">Password is required</span>
                 </div>
                 <div>
                         <button class="btn btn-primary" 
                             name="submitbtn" 
                             id="submitbtnId" 
                             type="submit"
-                            [disabled]="loginform.invalid">  Login   </button>
+                            [disabled]="">  Login   </button>
                 </div>    
             </form>
          </div>

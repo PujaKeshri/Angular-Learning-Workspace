@@ -8,14 +8,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit{
 
-    constructor(private http : HttpClient){
-
-    }
-
     @ViewChild('profilepicform') profilepicForm : NgForm;
     @ViewChild('loginform') loginForm : NgForm;
     defaultImg : string = "../assets/images/male.png";
     imageSrc : string = this.defaultImg;
+    
+    constructor(private http : HttpClient){
+
+    }
+
     ngOnInit(){
         
     }
@@ -30,12 +31,12 @@ export class LoginComponent implements OnInit{
         reader.onerror = this.handleReaderError.bind(this);
         reader.readAsDataURL(file);
        // console.log("Url : "+URL.createObjectURL(file));
-        //  console.log("File : "+URL.revokeObjectURL(URL.createObjectURL(file)));
-        // this.http.post('http://localhost:3000/fileUpload',file).subscribe(result=>{
-        //     console.log(result);
-        // },err=>{
-        //     console.log(err);
-        // })
+       // console.log("File : "+URL.revokeObjectURL(URL.createObjectURL(file)));
+        /* this.http.post('http://localhost:3000/fileUpload',file).subscribe(result=>{
+             console.log(result);
+         },err=>{
+             console.log(err);
+         })*/
     }
 
     handleReaderLoad(e){
@@ -52,10 +53,11 @@ export class LoginComponent implements OnInit{
     }
 
     onSubmitClick(){
+        console.log(this.loginForm);
        let user = this.loginForm.value.username;
        let pws = this.loginForm.value.password;
        let url = 'http://localhost:3000/checkUser?user='+user+'&pws='+pws;
-       this.http.get<string>(url).subscribe(result=>{
+       this.http.get(url).subscribe(result=>{
             console.log(result);
        },err=>{
             console.log(err);

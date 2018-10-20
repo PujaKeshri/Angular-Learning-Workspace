@@ -5,11 +5,13 @@ import {AppRoutingModule} from './app-routing.module';
 import {EnquiryComponent} from './enquiry/enquiry.component';
 import {PersonalDetails} from './services/personal-details.service';
 import {Sorting} from './services/sorting.service';
+import {ValidationMessageService} from './services/validation-message.service';
 import {SortByDirective} from './directives/sort-by.directive';
 import { AppComponent } from './app.component';
 import { LeftMenu } from './left-menu/left-menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import { ControlMessageComponent } from './control-message/control-message.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { LoginComponent } from './login/login.component';
     LoginComponent,
     LeftMenu,
     EnquiryComponent,
-    SortByDirective
+    SortByDirective,
+    ControlMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,7 @@ import { LoginComponent } from './login/login.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [PersonalDetails,Sorting],
+  providers: [PersonalDetails,Sorting,ValidationMessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
