@@ -64,17 +64,5 @@ export class LoginComponent implements OnInit{
        })
     }
 
-    onRegistration(){
-        console.log(this.loginForm);
-        var data = this.loginForm.value;
-        const httpOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-          };
-        this.http.post('http://localhost:3000/saveUser',data,httpOptions).subscribe(result => {
-            console.log(result);
-        },err => {
-            console.log(err);
-        });
-    }
 
 }

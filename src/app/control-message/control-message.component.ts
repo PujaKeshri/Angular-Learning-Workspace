@@ -11,12 +11,10 @@ OnInit,
 AfterViewInit,
 AfterViewChecked{
 
-    errorMessage : string = null;
     @Input('control') formControl : FormControl;
     
     ngOnInit(){
         console.log('ngOnInit called!');
-        this.errorMessage = this.getErrorMessage();
     }
     ngAfterViewInit(){
         console.log('ngAfterViewInit called!');
@@ -24,10 +22,9 @@ AfterViewChecked{
 
     ngAfterViewChecked() {
         console.log('ngAfterViewChecked called!');
-        this.errorMessage = this.getErrorMessage();
     }
 
-    getErrorMessage(){
+    get errorMessage(){
         for(let propertyName in this.formControl.errors){
             if(this.formControl.errors.hasOwnProperty(propertyName) && this.formControl.touched){
                 return ValidationMessageService.getValidationErrormessage(propertyName,this.formControl.errors[propertyName]);

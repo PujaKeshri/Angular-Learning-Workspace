@@ -11,7 +11,7 @@
          <div class="col-md-6">
              <h5>Admin Login</h5>
             <form #loginform="ngForm" (ngSubmit)="onSubmitClick()">
-                <div>
+                <div class="form-group">
                         <input type="text"
                             class="form-control" 
                             name="username" 
@@ -20,9 +20,10 @@
                             required
                             ngModel
                             #username="ngModel">
-                         <span *ngIf="username.dirty && username.invalid" class="invalidInput">UserName is required</span>
+                            <control-message [control]="loginform.controls.username"></control-message>
+                         <!-- <span *ngIf="username.dirty && username.invalid" class="invalidInput">UserName is required</span> -->
                 </div>
-                <div>
+                <div class="form-group">
                         <input type="password" 
                             class="form-control" 
                             name="password" 
@@ -31,14 +32,15 @@
                             required
                             ngModel
                         #password="ngModel">
-                        <span *ngIf="password.dirty && password.invalid" class="invalidInput">Password is required</span>
+                        <control-message [control]="loginform.controls.password"></control-message>
+                        <!-- <span *ngIf="password.dirty && password.invalid" class="invalidInput">Password is required</span> -->
                 </div>
-                <div>
+                <div class="form-group">
                         <button class="btn btn-primary" 
                             name="submitbtn" 
                             id="submitbtnId" 
                             type="submit"
-                            [disabled]="">  Login   </button>
+                            [disabled]="loginform.invalid">  Login   </button>
                 </div>    
             </form>
          </div>

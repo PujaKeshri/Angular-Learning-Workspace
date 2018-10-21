@@ -1,3 +1,5 @@
+import { FormControl } from "@angular/forms";
+
 export class ValidationMessageService{
     static getValidationErrormessage(validatorName : string, validatorValue?: any){
      let config = {
@@ -10,7 +12,7 @@ export class ValidationMessageService{
         return config[validatorName];
     }
 
-    static emailValidator(control) {
+    static emailValidator(control:FormControl) {
         // RFC 2822 compliant regex
         if (control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
             return null;
@@ -19,7 +21,7 @@ export class ValidationMessageService{
         }
     }
 
-    static passwordValidator(control) {
+    static passwordValidator(control:FormControl) {
         // {6,100}           - Assert password is between 6 and 100 characters
         // (?=.*[0-9])       - Assert a string has at least one number
         if (control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,100}$/)) {

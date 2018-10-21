@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {EnquiryComponent} from './enquiry/enquiry.component';
 import {PersonalDetails} from './services/personal-details.service';
@@ -11,12 +12,14 @@ import { AppComponent } from './app.component';
 import { LeftMenu } from './left-menu/left-menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
+import {RegistrationComponent} from './registration/registration.component';
 import { ControlMessageComponent } from './control-message/control-message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegistrationComponent,
     LeftMenu,
     EnquiryComponent,
     SortByDirective,
@@ -25,6 +28,7 @@ import { ControlMessageComponent } from './control-message/control-message.compo
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule
   ],
